@@ -4,9 +4,9 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.contrib.auth import logout
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm
+
+from forms import CustomUserCreationForm
 
 
 def logout_view(request):
@@ -18,9 +18,10 @@ def logout_view(request):
 def register(request):
     """Register the new user"""
     if request.method != 'POST':
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     else:
-        form = UserCreationForm(data=request.POST)
+        print(request.POST)
+        form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
             new_user = form.save()
             authenticated_user = authenticate(username=new_user.username,
