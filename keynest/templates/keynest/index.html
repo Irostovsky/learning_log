@@ -7,5 +7,27 @@
 
 
 {% block content %}
-  <p>Keys will be there</p>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Keynest ID</th>
+        <th>Keynest Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for key in key_list %}
+        <tr>
+          <td>{{key.id}}</td>
+          <td>{{key.keynest_id}}</td>
+          <td>{{key.name}}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No items</td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
 {% endblock content %}
