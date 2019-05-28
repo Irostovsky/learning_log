@@ -137,3 +137,5 @@ LOGIN_URL = '/users/login/'
 BOOTSTRAP3 = {
     'include_jquery': True,
 }
+
+KEYNEST_API_KEY = config('KEYNEST_API_KEY')
