@@ -3,10 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.views import generic
+from django.views import generic, View
 
 from .models import Key
 
@@ -17,4 +14,11 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Key.objects.order_by('name')
+
+
+class LoadKeysView(View):
+    def get(self, request, *args, **kwargs):
+        context = {'message': 'Keys are loaded'}
+        return render(request, 'keynest/index.html', context)
+
 
