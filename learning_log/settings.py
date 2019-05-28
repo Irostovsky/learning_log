@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'learning_logs',
+    'keynest',
     'django_seed',
     'users',
 ]
