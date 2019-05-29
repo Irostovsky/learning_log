@@ -24,6 +24,7 @@ class Key(models.Model):
     name = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     store = models.ForeignKey(Store, null=True)
+    property_id = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return str(self.keynest_id) + ' ' + self.name

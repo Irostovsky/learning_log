@@ -8,7 +8,8 @@ def load_keys(token):
         Key.objects.update_or_create(
             keynest_id=item['KeyId'],
             defaults={
-                'name': item['KeyName']
+                'name': item['KeyName'],
+                'property_id': item['PropertyID']
             })
 
 
