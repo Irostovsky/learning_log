@@ -1,6 +1,6 @@
 
-from .models import Key
-from .api import key_list#, stores
+from .models import Key, Store
+from .api import key_list, store_list
 
 
 def load_keys(token):
@@ -11,10 +11,14 @@ def load_keys(token):
                 'name': item['KeyName']
             })
 
+
 def load_stores(token):
-    pass
-    # for item in stores(token):
-    #     if not Key.objects.filter(keynest_id=item['KeyId']):
-    #         key = Key(keynest_id=item['KeyId'], name=item['KeyName'])
-    #         key.save()
+    for item in store_list(token):
+        Store.objects.update_or_create(
+            store_id=item['StoreId'],
+            defaults={
+                'name': item['StoreName'],
+                'store_time': item['StoreTime'],
+                'address': item['StoreStreetAddress'],
+            })
 

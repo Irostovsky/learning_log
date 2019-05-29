@@ -6,12 +6,24 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
-class Key(models.Model):
-    """A topic the user is learning about"""
-    keynest_id = models.IntegerField(unique=True)
+class Store(models.Model):
+    store_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    store_time = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """Return a string representation of the model."""
+        return str(self.store_id) + ' ' + self.name
+
+
+@python_2_unicode_compatible
+class Key(models.Model):
+    keynest_id = models.IntegerField(unique=True)
+    name = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    store = models.ForeignKey(Store, null=True)
+
+    def __str__(self):
         return str(self.keynest_id) + ' ' + self.name
