@@ -15,7 +15,7 @@ def store_list(token):
     return response.json()['ResponsePacket']['StoreList']
 
 
-def key_status(token, key_id):
+def get_key_status(token, key_id):
     url = 'https://api.keynest.com/api/v2/Key/GetKeyStatus'
     headers = {'ApiKey': token}
     params = {'KeyId': key_id}

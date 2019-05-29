@@ -14,6 +14,8 @@
     </p>
   {% endif %}
   <a href="{% url 'keynest:load_keys' %}" class='btn btn-primary'>Load Keys</a>
+  <a href="{% url 'keynest:update_keys_status' %}" class='btn btn-primary'>Update Keys Status </a>
+
   <table class='table'>
     <thead>
       <tr>
@@ -21,6 +23,8 @@
         <th>Keynest ID</th>
         <th>Keynest Name</th>
         <th>Keynest PropertyID</th>
+        <th>Status</th>
+        <th>Store</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +34,18 @@
           <td>{{key.keynest_id}}</td>
           <td>{{key.name}}</td>
           <td>{{key.property_id}}</td>
+          <td>
+            {{key.status|default:""}}
+            <br/>
+            {{key.full_status|default:""}}
+          </td>
+          <td>
+            {{key.store_name|default:''}}
+            <br>
+            {{key.store_address|default:''}}
+            <br>
+            {{key.store_time|default:''}}
+          </td>
         </tr>
       {% empty %}
         <tr>

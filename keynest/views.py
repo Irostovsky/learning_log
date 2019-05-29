@@ -5,7 +5,7 @@ from django.views import generic, View
 from django.shortcuts import redirect, reverse
 
 from .models import Key, Store
-from .services import load_keys, load_stores
+from .services import load_keys, load_stores, update_keys_status
 
 from django.conf import settings
 
@@ -27,7 +27,11 @@ class StoreListView(generic.ListView):
 
 class LoadKeysView(View):
     def get(self, request, *args, **kwargs):
-        load_stores(settings.KEYNEST_API_KEY)
         load_keys(settings.KEYNEST_API_KEY)
         return redirect(reverse('keynest:index'))
 
+
+class UpdateKeysStatusView(View):
+    def get(self, request, *args, **kwargs):
+        update_keys_status(settings.KEYNEST_API_KEY)
+        return redirect(reverse('keynest:index'))
